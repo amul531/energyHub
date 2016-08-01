@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BashCartesian{
-	//main
-
 	public static void main(String[] args) throws IOException{ 
 		String inputStr;
 		//Uncomment and run this to test it with your own input
@@ -22,7 +20,7 @@ public class BashCartesian{
 
 		//Uncomment and run this to check sample inputs and outputs (block test)
 		/*
-	    inputStr = new String("afe{g,h{k,l{o,p}q}m}ij{x,y}"); 
+	        inputStr = new String("afe{g,h{k,l{o,p}q}m}ij{x,y}"); 
 		System.out.println("Input #1: "+inputStr);
 		print(bashCartesianProduct(inputStr));
 		//expected output: afegijx afegijy afehkmijx afehkmijy afehloqmijx afehloqmijy afehlpqmijx afehlpqmijy 
@@ -160,23 +158,23 @@ public class BashCartesian{
 		int[] addIndex = new int[2];                                               //list to store the start and end indices of a nest
 		boolean nested = false;                                                    //true if a nest is encountered
 		for(int i = 0; i < input.length(); i++){			
-			if(input.charAt(i) == '{'){                                            //check for nested open bracket
+			if(input.charAt(i) == '{'){                                        //check for nested open bracket
 				open++;
 				if(!nested && open == 2)
 					start = i;
 			}
-			if(input.charAt(i) == '}'){                                            //find the closing bracket that matches the above open bracket
+			if(input.charAt(i) == '}'){                                        //find the closing bracket that matches the above open bracket
 				open--;     
 				if(!nested && open == 1){
 					end = i;
-					nested = true;                                                 //change nested to true since a nest has been found
+					nested = true;                                     //change nested to true since a nest has been found
 				}
 			} 
-			if(nested){                                                            //if a nested loop is found, go into it 
-				while(Character.isLetter(input.charAt(start-1)))                   //check if it starts after a character
+			if(nested){                                                        //if a nested loop is found, go into it 
+				while(Character.isLetter(input.charAt(start-1)))           //check if it starts after a character
 					start--;
-				boolean closed = false;                                            //true if close bracket found else false
-				for(int j = end; j < input.length()-1; j++){                       //checking for further nests within the current nest
+				boolean closed = false;                                    //true if close bracket found else false
+				for(int j = end; j < input.length()-1; j++){               //checking for further nests within the current nest
 					if(input.charAt(j) == '}')
 						closed = true;					
 					if(closed && (Character.isLetter(input.charAt(j)) || input.charAt(j) == '}') && (input.charAt(j+1) == ',' || input.charAt(j+1) == '}')){
@@ -189,7 +187,7 @@ public class BashCartesian{
 				indices.add(addIndex);
 				nested = false;
 				i = end;
-			}                                                                      //end of if(nested)
+			}                                                                  //end of if(nested)
 		}
 		return indices;
 	}
@@ -230,22 +228,22 @@ public class BashCartesian{
 
 		for(int k = 0; k < totalCombos; k++){                                      //generate all possible outputs by iterating through all the combinations
 			StringBuilder temp = new StringBuilder(input);
-			for(int j = optionsList.size() - 1; j >= 0; j--)                       //replace the braces with a string based on the current option
+			for(int j = optionsList.size() - 1; j >= 0; j--)                   //replace the braces with a string based on the current option
 				temp.replace(openBr[j], closeBr[j]+1, optionsList.get(j)[curOptn[j]]);
-			output.append(temp.toString()).append(",");                            //append the value to the output list
-			                                                                       //updating the array containing the "current" options and returning back an updated pointer for it                                    
-			curOptn[count-1]++;                                                    //outer loop
+			output.append(temp.toString()).append(",");                         //append the value to the output list
+			                                                                    //updating the array containing the "current" options and returning back an updated pointer for it                                    
+			curOptn[count-1]++;                                                 //outer loop
 			for(int i = count - 1; i > 0; i--){
 				if(curOptn[i] == optionsList.get(i).length){
-					curOptn[i] = 0;                                                //when current pointer reaches the bound, reset to 0
-					curOptn[i-1]++;                                                //inner loop 
+					curOptn[i] = 0;                                     //when current pointer reaches the bound, reset to 0
+					curOptn[i-1]++;                                     //inner loop 
 				}
 			}
 		}
 		return output.deleteCharAt(output.length()-1).toString();
 	}
 
-	public static void print(String s){                                            //helper function: to print a string array/list
+	public static void print(String s){                                                 //helper function: to print a string array/list
 		List<String> ip = Arrays.asList(s.split(","));  
 		ip.forEach(i->System.out.print(i+" "));
 		System.out.println();
