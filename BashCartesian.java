@@ -23,6 +23,16 @@ public class BashCartesian{
 	    String input1 = new String("afe{g,h{k,l{o,p}q}m}ij{x,y}"); 
 		System.out.println("Input #1: "+input);
 		print(bashCartesianProduct(input));
+		
+		input1 = new String("a{b,c}d{e,f,g}hi"); 
+		System.out.println("\n\nInput #2: "+input);
+		print(bashCartesianProduct(input));
+		//expected output:abdehi abdfhi abdghi acdehi acdfhi acdghi
+		
+		input1 = new String("a{b,c{d,e,f}g,h}ij{k,l}"); 
+		System.out.println("\n\nInput #2: "+input);
+		print(bashCartesianProduct(input));
+		//expected output:abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl
 
 		input1 = new String("afe{{k,l{o,p}q}m}ij"); 
 		System.out.println("\n\nInput #2: "+input);
@@ -85,13 +95,35 @@ public class BashCartesian{
 			if(input[i].equals(output[i]));
 		flag = true;
 		System.out.println(flag);
+		
+		//test#5 :given example #1
+		input1 = "a{b,c}d{e,f,g}hi";
+		System.out.println("Test#5 :"+input1);	
+		input = bashCartesianProduct(input1).split(",");
+		output = "abdehi abdfhi abdghi acdehi acdfhi acdghi".split(" ");
+		flag = false;
+		for(int i=0;i<input.length;i++)
+			if(input[i].equals(output[i]));
+		flag = true;
+		System.out.println(flag);
+		
+		//test#6 :given example #2
+		input1 = "a{b,c{d,e,f}g,h}ij{k,l}";
+		System.out.println("Test#6 :"+input1);	
+		input = bashCartesianProduct(input1).split(",");
+		output = "abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl".split(" ");
+		flag = false;
+		for(int i=0;i<input.length;i++)
+			if(input[i].equals(output[i]));
+		flag = true;
+		System.out.println(flag);
 
-		//test#5 :improperly balanced braces 
+		//test#7 :improperly balanced braces 
 		//throws error
 		boolean thrown = false;
 		try {
 			input1 = "{{{{a,b},c}d,ef,g}";
-			System.out.println("Test#5 :"+input1);	
+			System.out.println("Test#7 :"+input1);	
 			input = bashCartesianProduct(input1).split(",");
 		} catch (IllegalArgumentException e) {
 			thrown = true;
