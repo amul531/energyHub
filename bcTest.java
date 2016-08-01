@@ -8,8 +8,8 @@ public class bcTest {
 	
 	@Test
 	public void test1_noNest() {
-        inputArr = BashCartesian.bashCartesianProduct("a{b,c}d{e,f}g").split(",");
-        outputArr = "abdeg,abdfg,acdeg,acdfg".split(",");
+        inputArr = BashCartesian.bashCartesianProduct("ab{c,d}e").split(",");
+        outputArr = "abce abde".split(" ");
         for(int i=0;i<inputArr.length;i++)
         	assertTrue(inputArr[i].equals(outputArr[i]));
 	}
@@ -32,8 +32,8 @@ public class bcTest {
 	
 	@Test
 	public void test4_noNest() {
-        inputArr = BashCartesian.bashCartesianProduct("{a,b}{c,d}").split(",");
-        outputArr = "ac,ad,bc,bd".split(",");
+        inputArr = BashCartesian.bashCartesianProduct("{a,b}x{c,d}").split(",");
+        outputArr = "axc axd bxc bxd".split(" ");
         for(int i=0;i<inputArr.length;i++)
         	assertTrue(inputArr[i].equals(outputArr[i]));
 	}
@@ -56,16 +56,16 @@ public class bcTest {
 	
 	@Test
 	public void test7_Nest() {
-        inputArr = BashCartesian.bashCartesianProduct("a{b,c}d{e,f,g}hi").split(",");
-        outputArr = "abdehi abdfhi abdghi acdehi acdfhi acdghi".split(" ");
+        inputArr = BashCartesian.bashCartesianProduct("ab{c,d{e,f,g}}hi").split(",");
+        outputArr = "abchi abdehi abdfhi abdghi".split(" ");
         for(int i=0;i<inputArr.length;i++)
         	assertTrue(inputArr[i].equals(outputArr[i]));
 	}
 	
 	@Test
 	public void test8_Nest() {
-        inputArr = BashCartesian.bashCartesianProduct("a{b,c{d,e,f}g,h}ij{k,l}").split(",");
-        outputArr = "abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl".split(" ");
+        inputArr = BashCartesian.bashCartesianProduct("a{b,c{d,e{k,l}f}g,h}ij").split(",");
+        outputArr = "abij acdgij acekfgij acelfgij ahij".split(" ");
         for(int i=0;i<inputArr.length;i++)
         	assertTrue(inputArr[i].equals(outputArr[i]));
 	}
