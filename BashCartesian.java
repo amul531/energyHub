@@ -226,7 +226,7 @@ public class BashCartesian{
 			for(int j = optionsList.size() - 1; j >= 0; j--)                       //replace the braces with a string based on the current option
 				temp.replace(openBr[j], closeBr[j]+1, optionsList.get(j)[curOptn[j]]);
 			output.append(temp.toString()).append(",");                            //append the value to the output list
-			//updating the array containing the "current" options and returning back an updated pointer for it                                    
+			                                                                       //updating the array containing the "current" options and returning back an updated pointer for it                                    
 			curOptn[count-1]++;                                                    //outer loop
 			for(int i = count - 1; i > 0; i--){
 				if(curOptn[i] == optionsList.get(i).length){
@@ -238,8 +238,7 @@ public class BashCartesian{
 		return output.deleteCharAt(output.length()-1).toString();
 	}
 
-	//helper function: to print a string array/list
-	public static void print(String s){
+	public static void print(String s){                                            //helper function: to print a string array/list
 		List<String> ip = Arrays.asList(s.split(","));  
 		ip.forEach(i->System.out.print(i+" "));
 		System.out.println();
