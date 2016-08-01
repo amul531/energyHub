@@ -7,114 +7,120 @@ public class BashCartesian{
 	//main
 
 	public static void main(String[] args) throws IOException{ 
+		String inputStr;
 		//Uncomment and run this to test it with your own input
-		/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String input;
+		/*
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter your string or 'y' to quit");
-		while((input = br.readLine()) != null){
-			if(input.toLowerCase().equals("y"))
+		while((inputStr = br.readLine()) != null){
+			if(inputStr.toLowerCase().equals("y"))
 				break;
 			else
-				print(bashCartesianProduct(input));
-		}*/
+				print(bashCartesianProduct(inputStr));
+		}
+		*/
 
 		//Uncomment and run this to check sample inputs and outputs (block test)
 		/*
-	    String input1 = new String("afe{g,h{k,l{o,p}q}m}ij{x,y}"); 
-		System.out.println("Input #1: "+input);
-		print(bashCartesianProduct(input));
+	    inputStr = new String("afe{g,h{k,l{o,p}q}m}ij{x,y}"); 
+		System.out.println("Input #1: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: afegijx afegijy afehkmijx afehkmijy afehloqmijx afehloqmijy afehlpqmijx afehlpqmijy 
 		
-		input1 = new String("a{b,c}d{e,f,g}hi"); 
-		System.out.println("\n\nInput #2: "+input);
-		print(bashCartesianProduct(input));
-		//expected output:abdehi abdfhi abdghi acdehi acdfhi acdghi
+		inputStr = new String("a{b,c}d{e,f,g}hi"); 
+		System.out.println("\n\nInput #2: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: abdehi abdfhi abdghi acdehi acdfhi acdghi
 		
-		input1 = new String("a{b,c{d,e,f}g,h}ij{k,l}"); 
-		System.out.println("\n\nInput #2: "+input);
-		print(bashCartesianProduct(input));
-		//expected output:abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl
+		inputStr = new String("a{b,c{d,e,f}g,h}ij{k,l}"); 
+		System.out.println("\n\nInput #2: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl
 
-		input1 = new String("afe{{k,l{o,p}q}m}ij"); 
-		System.out.println("\n\nInput #2: "+input);
-		print(bashCartesianProduct(input));
+		inputStr = new String("afe{{k,l{o,p}q}m}ij"); 
+		System.out.println("\n\nInput #2: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: afekmij afeloqmij afelpqmij 
 
-		input1 = new String("ab{c,d}e{f,g}");  
-		System.out.println("\n\nInput #3: "+input);
-		print(bashCartesianProduct(input));
+		inputStr = new String("ab{c,d}e{f,g}");  
+		System.out.println("\n\nInput #3: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: abcef abceg abdef abdeg 
 
-		input1 = new String("{a,b}d{e,f{g,h}}ij");
-		System.out.println("\n\nInput #4: "+input);
-		print(bashCartesianProduct(input));
-		 */
-
+		inputStr = new String("{a,b}d{e,f{g,h}}ij");
+		System.out.println("\n\nInput #4: "+inputStr);
+		print(bashCartesianProduct(inputStr));
+		//expected output: adeij adfgij adfhij bdeij bdfgij bdfhij 
+		*/
+		
 		//Uncomment and run this to test it with a set of inputs (unit tests)
-		String input1 = new String();
-		String[] input;
-		String[] output;
+		/*
+		String[] inputArr;
+		String[] outputArr;
 		boolean flag = false;
 
 		//test#1 :non-nested string
-		input1 = "a{b,c}d{e,f}g";
-		System.out.println("Test#1 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "abdeg,abdfg,acdeg,acdfg".split(",");
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		inputStr = "a{b,c}d{e,f}g";
+		System.out.println("Test#1 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "abdeg,abdfg,acdeg,acdfg".split(",");
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 
 		//test#2 :non-nested string
-		input1 = "{a,b}{c,d}";
-		System.out.println("Test#2 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "ac,ad,bc,bd".split(",");
+		inputStr = "{a,b}{c,d}";
+		System.out.println("Test#2 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "ac,ad,bc,bd".split(",");
 		flag = false;
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 
 		//test#3 :nested string
-		input1 = "a{b,c{d,e}f,g}hi{j,k}";
-		System.out.println("Test#3 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "aabhij,abhik,acdfhij,acdfhik,acefhij,acefhik,aghij,aghik".split(",");
+		inputStr = "a{b,c{d,e}f,g}hi{j,k}";
+		System.out.println("Test#3 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "aabhij,abhik,acdfhij,acdfhik,acefhij,acefhik,aghij,aghik".split(",");
 		flag = false;
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 
 		//test#4 :multiple-nested string
-		input1 = "{{{{a,b},c}d,e}f,g}";
-		System.out.println("Test#4 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "acd,bcd,cdf,ef,g".split(",");
+		inputStr = "{{{{a,b},c}d,e}f,g}";
+		System.out.println("Test#4 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "acd,bcd,cdf,ef,g".split(",");
 		flag = false;
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 		
 		//test#5 :given example #1
-		input1 = "a{b,c}d{e,f,g}hi";
-		System.out.println("Test#5 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "abdehi abdfhi abdghi acdehi acdfhi acdghi".split(" ");
+		inputStr = "a{b,c}d{e,f,g}hi";
+		System.out.println("Test#5 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "abdehi abdfhi abdghi acdehi acdfhi acdghi".split(" ");
 		flag = false;
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 		
 		//test#6 :given example #2
-		input1 = "a{b,c{d,e,f}g,h}ij{k,l}";
-		System.out.println("Test#6 :"+input1);	
-		input = bashCartesianProduct(input1).split(",");
-		output = "abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl".split(" ");
+		inputStr = "a{b,c{d,e,f}g,h}ij{k,l}";
+		System.out.println("Test#6 :"+inputStr);	
+		inputArr = bashCartesianProduct(inputStr).split(",");
+		outputArr = "abijk abijl acdgijk acdgijl acegijk acegijl acfgijk acfgijl ahijk ahijl".split(" ");
 		flag = false;
-		for(int i=0;i<input.length;i++)
-			if(input[i].equals(output[i]));
+		for(int i=0;i<inputArr.length;i++)
+			if(inputArr[i].equals(outputArr[i]));
 		flag = true;
 		System.out.println(flag);
 
@@ -122,13 +128,14 @@ public class BashCartesian{
 		//throws error
 		boolean thrown = false;
 		try {
-			input1 = "{{{{a,b},c}d,ef,g}";
-			System.out.println("Test#7 :"+input1);	
-			input = bashCartesianProduct(input1).split(",");
+			inputStr = "{{{{a,b},c}d,ef,g}";
+			System.out.println("Test#7 :"+inputStr);	
+			inputArr = bashCartesianProduct(inputStr).split(",");
 		} catch (IllegalArgumentException e) {
 			thrown = true;
 		}
-		System.out.println(thrown);
+		System.out.println(thrown); 
+		*/
 	}
 
 	protected static String bashCartesianProduct(String input){
