@@ -1,3 +1,7 @@
+/*
+Clone or download this program and run it through command line or any java editor of your choice.
+Uncomment any testing block of choice in the main function before compiling and running it.
+*/
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
