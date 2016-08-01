@@ -10,7 +10,8 @@
  
 #BashCartesian
   This is the cleaned up version of the code with three different ways to test it.</br>
-  Clone or download this program and run it through command line or any java editor of your choice.
+  Clone or download this program and run it through command line or any java editor of your choice.</br>
+  Uncomment any testing block of choice in the main function before compiling and running it. 
   
 #commentedCartesian
   This is the debugging version of the original code with print statements and variations.
